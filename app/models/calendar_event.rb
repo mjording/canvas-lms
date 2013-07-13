@@ -632,7 +632,8 @@ class CalendarEvent < ActiveRecord::Base
 
   class IcalEvent
     include Api
-    include ActionController::UrlWriter
+    #include ActionController::UrlWriter
+    include Rails.application.routes.url_helpers
     include TextHelper
 
     def initialize(event)

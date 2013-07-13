@@ -20,7 +20,7 @@ module SendToInbox
 
   module SendToInboxClassMethods
     def self.extended(klass)
-      klass.send(:class_inheritable_accessor, :send_to_inbox_block)
+      klass.send(:class_attribute, :send_to_inbox_block)
     end
 
     def on_create_send_to_inboxes(&block)

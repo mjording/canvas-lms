@@ -394,7 +394,7 @@ class ActiveRecord::Base
       log_dynamic_finder_nil_arguments(attribute_names) if current_scoped_methods.nil? && arguments.flatten.compact.empty?
       construct_attributes_from_arguments_without_type_cast(attribute_names, arguments)
     end
-    alias_method_chain :construct_attributes_from_arguments, :type_cast
+    #alias_method_chain :construct_attributes_from_arguments, :type_cast
 
     def log_dynamic_finder_nil_arguments(attribute_names)
       error = "No non-nil arguments passed to #{self.base_class}.find_by_#{attribute_names.join('_and_')}"
@@ -462,7 +462,7 @@ class ActiveRecord::Base
   end
 
   def self.generate_temp_table(options = {})
-    Canvas::TempTable.new(connection, construct_finder_sql({}), options)
+    Canvas::TempTable.new(connection, to_sql, options)
   end
 
   def self.find_in_batches_with_temp_table(options = {}, &block)
@@ -580,11 +580,11 @@ class ActiveRecord::Base
   def self.find_ids_in_ranges(options = {})
     batch_size = options[:batch_size].try(:to_i) || 1000
 
-    ids = connection.select_rows("select min(id), max(id) from (#{self.send(:construct_finder_sql, :select => "#{quoted_table_name}.#{primary_key} as id", :order => primary_key, :limit => batch_size)}) as subquery").first
+    ids = connection.select_rows("select min(id), max(id) from (#{connection.select("#{quoted_table_name}.#{primary_key} as id", :order => primary_key, :limit => batch_size).to_sql}) as subquery").first
     while ids.first.present?
       yield(*ids)
       last_value = ids.last
-      ids = connection.select_rows("select min(id), max(id) from (#{self.send(:construct_finder_sql, :select => "#{quoted_table_name}.#{primary_key} as id", :conditions => ["#{quoted_table_name}.#{primary_key}>?", last_value], :order => primary_key, :limit => batch_size)}) as subquery").first
+      ids = connection.select_rows("select min(id), max(id) from (#{connection.select("#{quoted_table_name}.#{primary_key} as id", :conditions => ["#{quoted_table_name}.#{primary_key}>?", last_value], :order => primary_key, :limit => batch_size).to_sql}) as subquery").first
     end
   end
 
@@ -1034,7 +1034,7 @@ ActiveRecord::Associations::HasManyThroughAssociation.class_eval do
       {:find => {:conditions => "1 != 1"}}
     end
   end
-  alias_method_chain :construct_scope, :has_many_fix
+  #alias_method_chain :construct_scope, :has_many_fix
 end
 
 if defined?(ActiveRecord::ConnectionAdapters::SQLiteAdapter)

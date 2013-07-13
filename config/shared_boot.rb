@@ -35,7 +35,8 @@ when "syslog"
   config.logger = RAILS_DEFAULT_LOGGER = SyslogWrapper.new(ident, facilities, opts)
   config.logger.level = log_level
 else
-  log_path = Rails.version >= "3.0" ? config.paths.log.first : config.log_path
+  log_path = config.paths['log'].first if Rails.version >= "3.1.1"
+  log_path ||= Rails.version >= "3.0" ? config.paths.log.first : config.log_path
   config.logger = RAILS_DEFAULT_LOGGER = CanvasLogger.new(log_path, log_level, opts)
 end
 

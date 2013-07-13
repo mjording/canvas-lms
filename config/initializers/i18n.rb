@@ -172,7 +172,7 @@ ActionView::Base.class_eval do
       @current_template = template
       _render_template_without_assign(template, *a)
     end
-    alias_method_chain :_render_template, :assign
+    #alias_method_chain :_render_template, :assign
     def i18n_scope
       @current_template.virtual_path.sub(/\/_/, '/').gsub('/', '.')
     end

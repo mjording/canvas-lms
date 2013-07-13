@@ -94,9 +94,9 @@ class Attachment < ActiveRecord::Base
   # These callbacks happen after the attachment data is saved to disk/s3, or
   # immediately after save if no data is being uploading during this save cycle.
   # That means you can't rely on these happening in the same transaction as the save.
-  after_save_and_attachment_processing :touch_context_if_appropriate
-  after_save_and_attachment_processing :build_media_object
-
+  #after_save_and_attachment_processing :touch_context_if_appropriate
+  #after_save_and_attachment_processing :build_media_object
+   
   # this mixin can be added to a has_many :attachments association, and it'll
   # handle finding replaced attachments. In other words, if an attachment fond
   # by id is deleted but an active attachment in the same context has the same

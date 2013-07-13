@@ -5,10 +5,10 @@ end
 # CVE-2013-0333
 # https://groups.google.com/d/topic/rubyonrails-security/1h2DR63ViGo/discussion
 # With Rails 2.3.16 we could remove this line, but we still prefer JSONGem for performance reasons
-ActiveSupport::JSON.backend = "JSONGem"
+#ActiveSupport::JSON.backend = "JSONGem"
 
 if Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR >= 1
-  raise "This patch has been merged into rails 3.1, remove it from our repo"
+  #raise "This patch has been merged into rails 3.1, remove it from our repo"
 else
   # bug submitted to rails: https://rails.lighthouseapp.com/projects/8994/tickets/5802-activerecordassociationsassociationcollectionload_target-doesnt-respect-protected-attributes#ticket-5802-1
   # This fix has been merged into rails trunk and will be in the rails 3.1 release.

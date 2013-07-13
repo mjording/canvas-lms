@@ -10,8 +10,8 @@ if CANVAS_RAILS3
   # 3.0.20 is transitional, we will be on 3.2.x before support is complete
   # that's also why some gems below have to be downgraded, 3.0.20 relies on old versions of some gems
   # just to be clear, Canvas is NOT READY to run under Rails 3 in production
-  gem 'rails',        '3.0.20'
-  gem 'authlogic',    '3.2.0'
+  gem 'rails',        '3.2.1'
+  gem 'authlogic', "~> 3.3.0"#,    '3.2.0'
 else
   gem 'rails',        '2.3.18'
   gem 'authlogic',    '2.1.3'
@@ -20,7 +20,7 @@ end
 gem "aws-sdk",        '1.8.3.1'
 gem 'barby',          '0.5.0'
 gem 'bcrypt-ruby',    '3.0.1'
-gem 'builder',        '2.1.2'
+gem 'builder',        '3.0.0' #'2.1.2'
 if !CANVAS_RAILS3
   gem 'canvas_connect', '0.1.0'
 end
@@ -29,7 +29,7 @@ gem 'diff-lcs',       '1.1.3',  :require => 'diff/lcs'
 if !CANVAS_RAILS3
   gem 'encrypted_cookie_store-instructure', '1.0.4', :require => 'encrypted_cookie_store'
 end
-gem 'erubis',         CANVAS_RAILS3 ? '2.6.6' : '2.7.0'
+gem 'erubis', '2.7.0'#,         CANVAS_RAILS3 ? '2.6.6' : '2.7.0'
 if !CANVAS_RAILS3
   gem 'fake_arel',      '1.0.0'
 end
@@ -38,7 +38,7 @@ gem 'hairtrigger',    '0.2.3'
 gem 'sass',           '3.2.3'
 gem 'hashery',        '1.3.0',  :require => 'hashery/dictionary'
 gem 'highline',       '1.6.1'
-gem 'i18n',           CANVAS_RAILS3 ? '0.5.0' : '0.6.0'
+gem 'i18n', '0.6.0'
 gem 'i18nema',        '0.0.7'
 gem 'icalendar',      '1.1.5'
 gem 'jammit',         '0.6.6'
@@ -46,19 +46,20 @@ gem 'json',           '1.8.0'
 # native xml parsing, diigo
 gem 'libxml-ruby',    '2.6.0',  :require => 'xml/libxml'
 gem 'macaddr',        '1.0.0'  # macaddr 1.2.0 tries to require 'systemu' which isn't a dependency
-gem 'mail', CANVAS_RAILS3 ? '2.2.19' : '2.5.3'
+gem 'mail', CANVAS_RAILS3 ? '2.4.0' : '2.5.3' #'2.2.19' : '2.5.3'
 # using this forked gem until https://github.com/37signals/marginalia/pull/15 is in the source gem
-gem 'instructure-marginalia',     '1.1.3',    :require => false
+gem 'marginalia',  :git => 'git://github.com/airbnb/marginalia.git', ref: 'nosqllitecrash'
 gem 'mime-types',     '1.17.2',   :require => 'mime/types'
 # attachment_fu (even the current technoweenie one on github) does not work
 # with mini_magick 3.1
+gem 'ncri_attachment_fu'
 gem 'mini_magick',    '1.3.2'
 gem 'netaddr',        '1.5.0'
 gem 'nokogiri',       '1.5.6'
 # oauth gem, with rails3 fixes rolled in
 gem 'oauth-instructure', '0.4.9', :require => 'oauth'
-gem 'rack',           CANVAS_RAILS3 ? '1.2.5' : '1.1.3'
-gem 'rake',           '10.0.4'
+gem 'rack',           CANVAS_RAILS3 ? '1.4.0' : '1.1.3' #'1.2.5' : '1.1.3'
+#gem 'rake'#,           '10.0.4'
 gem 'rdoc',           '3.12'
 gem 'ratom-instructure', '0.6.9', :require => "atom" # custom gem until necessary changes are merged into mainstream
 gem 'rdiscount',      '1.6.8'
@@ -72,11 +73,11 @@ gem 'rubycas-client', '2.2.1'
 gem 'rubyzip',        '0.9.5',  :require => 'zip/zip'
 gem 'safe_yaml-instructure', '0.8.0',  :require => false
 gem 'sanitize',       '2.0.3'
-gem 'shackles',       '1.0.0'
+gem 'shackles'
 gem 'tzinfo',         '0.3.35'
 gem 'useragent',      '0.4.16'
 gem 'uuid',           '2.3.2'
-gem 'will_paginate',  '2.3.15'
+gem 'will_paginate',  '3.0.3'#'2.3.15'
 gem 'xml-simple',     '1.0.12', :require => 'xmlsimple'
 gem 'foreigner',      '0.9.2'
 gem 'crocodoc-ruby',  '0.0.1', :require => 'crocodoc'
@@ -152,7 +153,7 @@ group :redis do
 end
 
 group :cassandra do
-  gem 'cassandra-cql', '1.1.5'
+  #gem 'cassandra-cql', '1.1.5'
 end
 
 group :embedly do

@@ -161,7 +161,7 @@ class ActiveRecord::Base
     end
     value
   end
-  alias_method_chain :unserialize_attribute, :utf8_check
+  #alias_method_chain :unserialize_attribute, :utf8_check
 end
 
 # Make sure the flash sets the encoding to UTF-8 as well.
