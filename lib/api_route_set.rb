@@ -18,6 +18,8 @@
 
 # wrapping your API routes in an ApiRouteSet adds structure to the routes file
 # and lets us auto-discover the route for a given API method in the docs.
+require 'rails/application/route_inspector'
+
 class ApiRouteSet
   cattr_accessor :apis
   attr_reader :prefix
@@ -47,9 +49,13 @@ class ApiRouteSet
   end
 
   def self.routes_for(prefix)
-    builder = ActionController::Routing::RouteBuilder.new
-    segments = builder.segments_for_route_path(prefix)
-    ActionController::Routing::Routes.routes.select { |r| segments_match(r.segments[0,segments.size], segments) }
+    prefixed_routes = CanvasRails::Application.routes.routes.select{|r|r.defaults[:path_prefix] && r.defaults[:path_prefix] == prefix}
+
+    segments = prefixed_routes.map(&:segments)
+    #builder = ActionController::Routing::RouteBuilder.new
+    #segments = builder.segments_for_route_path(prefix)
+
+    prefixed_routes.select { |r| segments_match(r.segments[0,segments.size], segments) }
   end
 
   def self.segments_match(seg1, seg2)
@@ -57,7 +63,7 @@ class ApiRouteSet
   end
 
   def api_methods_for_controller_and_action(controller, action)
-    self.class.routes_for(prefix).find_all { |r| r.matches_controller_and_action?(controller, action) }
+    self.class.routes_for(prefix).select { |r| r.defaults[:controller] == controller && r.defaults[:action] == action }
   end
 
   def get(path, opts = {})
