@@ -1,5 +1,5 @@
 class AddAggregateCountsToCollections < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :collections, :followers_count, :integer, :default => 0

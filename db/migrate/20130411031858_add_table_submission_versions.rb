@@ -1,5 +1,5 @@
 class AddTableSubmissionVersions < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :submission_versions do |t|
@@ -10,17 +10,17 @@ class AddTableSubmissionVersions < ActiveRecord::Migration
       t.integer  "assignment_id", :limit => 8
     end
 
-    columns = case connection.adapter_name
-    when 'PostgreSQL'
-      [:context_id, :version_id, :user_id, :assignment_id]
-    else
-      [:context_id, :context_type, :version_id, :user_id, :assignment_id]
-    end
+    #columns = case connection.adapter_name
+    #when 'PostgreSQL'
+      #[:context_id, :version_id, :user_id, :assignment_id]
+    #else
+      #[:context_id, :context_type, :version_id, :user_id, :assignment_id]
+    #end
 
-    add_index :submission_versions, columns,
-      :name => 'index_submission_versions',
-      :conditions => { :context_type => 'Course' },
-      :unique => true
+    #add_index :submission_versions, columns,
+      #:name => 'index_submission_versions',
+      #:conditions => { :context_type => 'Course' },
+      #:unique => true
   end
 
   def self.down

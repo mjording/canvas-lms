@@ -1,6 +1,6 @@
 class AddActualAssociationColumnsToStreamItems < ActiveRecord::Migration
-  tag :predeploy
-  self.transactional = false
+  #tag :predeploy
+  #self.transactional = false
 
   def self.up
     add_column :stream_items, :context_type, :string

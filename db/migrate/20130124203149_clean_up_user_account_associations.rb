@@ -1,6 +1,6 @@
 class CleanUpUserAccountAssociations < ActiveRecord::Migration
-  tag :predeploy
-  self.transactional = false
+  #tag :predeploy
+  #self.transactional = false
 
   def self.up
     # clean up garbage data

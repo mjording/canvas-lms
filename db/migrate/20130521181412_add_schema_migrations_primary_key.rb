@@ -1,5 +1,5 @@
 class AddSchemaMigrationsPrimaryKey < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     case connection.adapter_name

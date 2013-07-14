@@ -1,5 +1,5 @@
 class AddCrocodocIdToUsers < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :users, :crocodoc_id, :int

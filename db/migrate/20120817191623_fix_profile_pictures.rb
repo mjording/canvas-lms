@@ -1,5 +1,5 @@
 class FixProfilePictures < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   class User < ActiveRecord::Base
     attr_accessible :id

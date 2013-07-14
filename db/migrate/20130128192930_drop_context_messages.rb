@@ -1,5 +1,5 @@
 class DropContextMessages < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     remove_column :conversation_messages, :context_message_id

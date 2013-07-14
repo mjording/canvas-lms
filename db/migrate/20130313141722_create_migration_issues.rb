@@ -1,5 +1,5 @@
 class CreateMigrationIssues < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :migration_issues do |t|

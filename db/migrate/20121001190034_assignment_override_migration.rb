@@ -1,5 +1,5 @@
 class AssignmentOverrideMigration < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :assignment_overrides do |t|

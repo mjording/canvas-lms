@@ -1,6 +1,6 @@
 class BreakDownDetailedReportSnapshots < ActiveRecord::Migration
-  tag :postdeploy
-  self.transactional = false
+  #tag :postdeploy
+  #self.transactional = false
 
   def self.do_report_type(scope)
     detailed = scope.where(:account_id => nil).last

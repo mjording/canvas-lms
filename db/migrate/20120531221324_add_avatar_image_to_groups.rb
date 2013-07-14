@@ -1,5 +1,5 @@
 class AddAvatarImageToGroups < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :groups, :avatar_attachment_id, :integer, :limit => 8

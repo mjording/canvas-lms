@@ -1,5 +1,5 @@
 class AddAccountIdToReportSnapshots < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :report_snapshots, :account_id, :integer, :limit => 8

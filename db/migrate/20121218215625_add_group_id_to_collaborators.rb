@@ -1,5 +1,5 @@
 class AddGroupIdToCollaborators < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :collaborators, :group_id, :integer, :limit => 8

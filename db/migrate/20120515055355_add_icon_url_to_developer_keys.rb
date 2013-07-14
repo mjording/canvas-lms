@@ -1,5 +1,5 @@
 class AddIconUrlToDeveloperKeys < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
   def self.up
     add_column :developer_keys, :icon_url, :string
   end

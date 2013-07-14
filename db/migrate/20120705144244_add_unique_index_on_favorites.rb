@@ -1,5 +1,5 @@
 class AddUniqueIndexOnFavorites < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     # cleanup must happen synchronously in order to create the unique index

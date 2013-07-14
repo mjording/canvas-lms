@@ -1,6 +1,6 @@
 class AddDiscussionTopicMaterializedViewPk < ActiveRecord::Migration
-  tag :postdeploy
-  self.transactional = false
+  #tag :postdeploy
+  #self.transactional = false
 
   def self.up
     case connection.adapter_name

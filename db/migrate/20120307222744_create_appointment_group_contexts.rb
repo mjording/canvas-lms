@@ -1,5 +1,5 @@
 class CreateAppointmentGroupContexts < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :appointment_group_contexts do |t|

@@ -1,5 +1,5 @@
 class AddSubscribedToDiscussionTopicParticipants < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
   
   def self.up
     add_column :discussion_topic_participants, :subscribed, :boolean

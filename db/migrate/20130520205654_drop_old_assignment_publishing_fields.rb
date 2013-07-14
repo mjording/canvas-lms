@@ -1,5 +1,5 @@
 class DropOldAssignmentPublishingFields < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     remove_column :courses, :publish_grades_immediately

@@ -1,5 +1,5 @@
 class AddAccessTokenCryptedToken < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :access_tokens, :crypted_token, :string

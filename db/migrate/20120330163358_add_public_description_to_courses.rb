@@ -1,5 +1,5 @@
 class AddPublicDescriptionToCourses < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :courses, :public_description, :text

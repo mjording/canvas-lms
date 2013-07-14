@@ -1,5 +1,5 @@
 class AddModeratorFlagToGroupMemberships < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :group_memberships, :moderator, :boolean

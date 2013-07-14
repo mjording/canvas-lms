@@ -1,6 +1,6 @@
 class AddCoursesSisSourceIdIndex < ActiveRecord::Migration
-  tag :predeploy
-  self.transactional = false
+  #tag :predeploy
+  #self.transactional = false
 
   def self.up
     add_index :courses, :sis_source_id, :concurrently => true

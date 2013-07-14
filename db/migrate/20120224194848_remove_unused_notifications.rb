@@ -1,5 +1,5 @@
 class RemoveUnusedNotifications < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     return unless Shard.current.default?

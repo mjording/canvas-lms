@@ -1,6 +1,6 @@
 class AddIndexOnConversationMessagesAuthorId < ActiveRecord::Migration
-  tag :postdeploy
-  self.transactional = false
+  #tag :postdeploy
+  #self.transactional = false
 
   def self.up
     add_index :conversation_messages, :author_id, :concurrently => true

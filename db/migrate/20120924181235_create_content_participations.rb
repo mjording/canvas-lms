@@ -1,5 +1,5 @@
 class CreateContentParticipations < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table "content_participations" do |t|

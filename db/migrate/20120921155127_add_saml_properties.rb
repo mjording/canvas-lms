@@ -1,5 +1,5 @@
 class AddSamlProperties < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :account_authorization_configs, :idp_entity_id, :string

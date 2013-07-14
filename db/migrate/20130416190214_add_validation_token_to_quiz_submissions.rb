@@ -1,5 +1,5 @@
 class AddValidationTokenToQuizSubmissions < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :quiz_submissions, :validation_token, :string

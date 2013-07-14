@@ -1,5 +1,5 @@
 class DropBodyAndSmsBodyColumns < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     remove_column :notifications, :body

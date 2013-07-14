@@ -1,5 +1,5 @@
 class DropSectionOrganizationNameAndLongSectionCodeFromCourseSections < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     remove_column :course_sections, :section_organization_name

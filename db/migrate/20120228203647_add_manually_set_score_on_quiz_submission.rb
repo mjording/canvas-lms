@@ -1,5 +1,5 @@
 class AddManuallySetScoreOnQuizSubmission < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
   
   def self.up
     add_column :quiz_submissions, :manually_scored, :boolean

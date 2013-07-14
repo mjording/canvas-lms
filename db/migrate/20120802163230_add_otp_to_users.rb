@@ -1,5 +1,5 @@
 class AddOtpToUsers < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :users, :otp_secret_key_enc, :string

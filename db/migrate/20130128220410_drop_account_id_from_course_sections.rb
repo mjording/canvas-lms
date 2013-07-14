@@ -1,5 +1,5 @@
 class DropAccountIdFromCourseSections < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     remove_column :course_sections, :account_id

@@ -1,5 +1,5 @@
 class ChangeMigrationIssueStringsToText < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     change_column :migration_issues, :description, :text

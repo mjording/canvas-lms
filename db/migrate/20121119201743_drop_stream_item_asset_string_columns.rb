@@ -1,5 +1,5 @@
 class DropStreamItemAssetStringColumns < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     remove_columns :stream_items, :context_code, :item_asset_string

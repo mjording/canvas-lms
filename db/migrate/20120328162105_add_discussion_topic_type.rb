@@ -1,5 +1,5 @@
 class AddDiscussionTopicType < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     remove_column :discussion_topics, :threaded

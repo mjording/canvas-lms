@@ -1,5 +1,5 @@
 class MoveMigrationNotificationsToSeparateCategory < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     Notification.where(:name => ['Migration Export Ready', 'Migration Import Finished', 'Migration Import Failed']).

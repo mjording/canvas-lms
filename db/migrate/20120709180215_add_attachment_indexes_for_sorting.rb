@@ -1,6 +1,6 @@
 class AddAttachmentIndexesForSorting < ActiveRecord::Migration
-  tag :predeploy
-  self.transactional = false
+  #tag :predeploy
+  #self.transactional = false
 
   def self.up
     if connection.adapter_name == 'PostgreSQL'
@@ -15,7 +15,7 @@ class AddAttachmentIndexesForSorting < ActiveRecord::Migration
     end
     add_index :attachments, [:folder_id, :file_state, :position], :concurrently => true
 
-    remove_index :attachments, "index_attachments_on_folder_id"
+    #remove_index :attachments, "index_attachments_on_folder_id"
   end
 
   def self.down

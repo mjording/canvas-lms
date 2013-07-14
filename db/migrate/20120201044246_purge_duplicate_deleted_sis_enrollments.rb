@@ -1,5 +1,5 @@
 class PurgeDuplicateDeletedSisEnrollments < ActiveRecord::Migration
-  self.transactional = false
+  #self.transactional = false
 
   def self.up
     while true

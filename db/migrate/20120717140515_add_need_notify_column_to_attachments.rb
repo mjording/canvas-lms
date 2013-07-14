@@ -1,6 +1,6 @@
 class AddNeedNotifyColumnToAttachments < ActiveRecord::Migration
-  tag :predeploy
-  self.transactional = false
+  #tag :predeploy
+  #self.transactional = false
 
   def self.up
     add_column :attachments, :need_notify, :boolean

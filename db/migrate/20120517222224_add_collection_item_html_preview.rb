@@ -1,5 +1,5 @@
 class AddCollectionItemHtmlPreview < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :collection_item_datas, :html_preview, :text

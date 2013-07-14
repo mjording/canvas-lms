@@ -1,5 +1,5 @@
 class AssignmentOverrideIndexesMigration < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_index :assignment_overrides, [:set_type, :set_id]

@@ -1,5 +1,5 @@
 class AddUniqueIndexOnRoleName < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     # this cleanup is probably a no-op, because nobody has created any Roles yet, but is here

@@ -1,5 +1,5 @@
 class AddLastLoggedOutToUsers < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :users, :last_logged_out, :timestamp

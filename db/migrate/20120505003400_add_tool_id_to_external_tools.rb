@@ -1,5 +1,5 @@
 class AddToolIdToExternalTools < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
   def self.up
     # using tool_id instead of developer_key.id lets us
     # use the same keys as lti-examples.heroku.com for

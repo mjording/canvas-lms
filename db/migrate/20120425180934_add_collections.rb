@@ -1,5 +1,5 @@
 class AddCollections < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :collections do |t|

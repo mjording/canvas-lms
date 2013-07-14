@@ -1,5 +1,5 @@
 class AddRootAccountIdsToConversationParticipant < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :conversation_participants, :root_account_ids, :text

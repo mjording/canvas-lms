@@ -1,5 +1,5 @@
 class CountExistingCollectionItemsAndFollowers < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     DataFixup::CountExistingCollectionItemsAndFollowers.send_later_if_production(:run)

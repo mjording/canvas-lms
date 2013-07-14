@@ -1,5 +1,5 @@
 class FixUngradedCountsIncludeQuizEssays < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     DataFixup::FixUngradedCountsIncludeQuizEssays.send_later_if_production(:run)

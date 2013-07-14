@@ -1,5 +1,5 @@
 class FixUserMergeConversations2 < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     # basically we are re-running lines 408-410 and 417-419 of

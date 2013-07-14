@@ -1,5 +1,5 @@
 class FixRootOutcomeGroupTitles < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     DataFixup::FixRootOutcomeGroupTitles.send_later_if_production_enqueue_args(:run,

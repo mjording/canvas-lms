@@ -1,5 +1,5 @@
 class AddDiscussionEntryThreading < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :discussion_entries, :root_entry_id, :integer, :limit => 8

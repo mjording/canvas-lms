@@ -1,5 +1,5 @@
 class DetectAttachmentEncoding < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     DataFixup::DetectAttachmentEncoding.send_later_if_production(:run)

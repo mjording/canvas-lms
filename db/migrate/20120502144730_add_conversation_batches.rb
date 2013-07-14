@@ -1,5 +1,5 @@
 class AddConversationBatches < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :conversation_batches do |t|

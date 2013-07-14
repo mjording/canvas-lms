@@ -1,6 +1,6 @@
 class AddCourseSelfEnrollmentCode < ActiveRecord::Migration
-  self.transactional = false
-  tag :predeploy
+  #self.transactional = false
+  #tag :predeploy
 
   def self.up
     add_column :courses, :self_enrollment_code, :string

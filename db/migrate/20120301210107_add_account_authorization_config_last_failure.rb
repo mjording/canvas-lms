@@ -1,5 +1,5 @@
 class AddAccountAuthorizationConfigLastFailure < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :account_authorization_configs, :last_timeout_failure, :datetime

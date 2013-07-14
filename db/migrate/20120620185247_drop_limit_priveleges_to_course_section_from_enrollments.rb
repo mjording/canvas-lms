@@ -1,5 +1,5 @@
 class DropLimitPrivelegesToCourseSectionFromEnrollments < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     remove_column :enrollments, :limit_priveleges_to_course_section

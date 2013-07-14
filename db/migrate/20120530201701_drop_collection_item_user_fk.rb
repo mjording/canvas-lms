@@ -1,5 +1,5 @@
 class DropCollectionItemUserFk < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     # the user can be on another shard for group collections

@@ -1,5 +1,5 @@
 class ConversationMessageAttachmentIds < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :conversation_messages, :attachment_ids, :text

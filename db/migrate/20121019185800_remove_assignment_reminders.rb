@@ -1,5 +1,5 @@
 class RemoveAssignmentReminders < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     drop_table :assignment_reminders

@@ -1,5 +1,5 @@
 class DropRedundantSubmissionsIndex < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     # there's also a (unique) index on [:user_id, :assignment_id]

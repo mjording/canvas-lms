@@ -1,5 +1,5 @@
 class AddUniqueIndexToSettings < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     add_index :settings, :name, :unique => true

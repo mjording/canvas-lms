@@ -1,5 +1,5 @@
 class AddDefaultGroupStorageQuota < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :accounts, :default_group_storage_quota, :bigint

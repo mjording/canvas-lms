@@ -1,5 +1,5 @@
 class GenerateOldAccountOpaqueIDs < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     # Set all the root account opaque ids to their old value so that LTI

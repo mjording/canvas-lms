@@ -1,6 +1,6 @@
 class AddSomeIndices < ActiveRecord::Migration
-  tag :postdeploy
-  self.transactional = false
+  #tag :postdeploy
+  #self.transactional = false
 
   def self.up
     add_index :conversation_message_participants, :conversation_message_id, :name => "index_conversation_message_participants_on_message_id", :concurrently => true

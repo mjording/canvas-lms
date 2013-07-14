@@ -1,5 +1,5 @@
 class SetDiscussionEntryRootIds < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     # fix up parent_id, which was getting set to 0 for root-level entries

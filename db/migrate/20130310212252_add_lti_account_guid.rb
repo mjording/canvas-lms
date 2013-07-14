@@ -1,5 +1,5 @@
 class AddLtiAccountGuid < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :accounts, :lti_guid, :string

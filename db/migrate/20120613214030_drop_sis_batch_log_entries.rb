@@ -1,5 +1,5 @@
 class DropSisBatchLogEntries < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     drop_table :sis_batch_log_entries

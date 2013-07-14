@@ -1,10 +1,10 @@
 class DropUnusedIndices < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
-    remove_index :abstract_courses, :workflow_state
-    remove_index :abstract_courses, :enrollment_term_id
-    remove_index :abstract_courses, :account_id
+    #remove_index :abstract_courses, :workflow_state
+    #remove_index :abstract_courses, :enrollment_term_id
+    #remove_index :abstract_courses, :account_id
     remove_index :appointment_group_sub_contexts, :id
     remove_index :appointment_groups, :context_code
     remove_index :assignment_groups, :cloned_item_id
@@ -14,7 +14,7 @@ class DropUnusedIndices < ActiveRecord::Migration
     remove_index :content_exports, :user_id
     remove_index :content_tags, :workflow_state
     remove_index :course_sections, :enrollment_term_id
-    remove_index :courses, :abstract_course_id
+    #remove_index :courses, :abstract_course_id
     remove_index :delayed_notifications, [:workflow_state, :created_at]
     remove_index :discussion_entries, :attachment_id
     remove_index :discussion_topics, :cloned_item_id
@@ -36,9 +36,9 @@ class DropUnusedIndices < ActiveRecord::Migration
   end
 
   def self.down
-    add_index :abstract_courses, :workflow_state
-    add_index :abstract_courses, :enrollment_term_id
-    add_index :abstract_courses, :account_id
+    #add_index :abstract_courses, :workflow_state
+    #add_index :abstract_courses, :enrollment_term_id
+    #add_index :abstract_courses, :account_id
     add_index :appointment_group_sub_contexts, :id
     add_index :appointment_groups, :context_code
     add_index :assignment_groups, :cloned_item_id

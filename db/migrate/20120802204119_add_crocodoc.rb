@@ -1,5 +1,5 @@
 class AddCrocodoc < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :crocodoc_documents do |t|

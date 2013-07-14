@@ -1,6 +1,6 @@
 class ResetUngradedCounts < ActiveRecord::Migration
-  tag :postdeploy
-  self.transactional = false
+  #tag :postdeploy
+  #self.transactional = false
 
   def self.up
     DataFixup::ResetUngradedCounts.send_later_if_production(:run)

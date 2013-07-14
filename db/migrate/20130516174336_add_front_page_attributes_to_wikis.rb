@@ -1,5 +1,5 @@
 class AddFrontPageAttributesToWikis < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :wikis, :front_page_url, :text

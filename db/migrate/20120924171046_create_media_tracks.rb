@@ -1,5 +1,5 @@
 class CreateMediaTracks < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :media_tracks do |t|

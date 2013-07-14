@@ -1,5 +1,5 @@
 class AddMaterializedDiscussions < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :discussion_topic_materialized_views, :id => false do |t|

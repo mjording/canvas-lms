@@ -1,5 +1,5 @@
 class DropSubmissionLateColumn < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     remove_column :submissions, :late

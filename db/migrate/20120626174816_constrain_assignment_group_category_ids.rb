@@ -1,5 +1,5 @@
 class ConstrainAssignmentGroupCategoryIds < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     Assignment.where(:group_category_id => 0).update_all(:group_category_id => nil)

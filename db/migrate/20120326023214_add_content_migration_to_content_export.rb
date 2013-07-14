@@ -1,5 +1,5 @@
 class AddContentMigrationToContentExport < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :content_exports, :content_migration_id, :integer, :limit => 8

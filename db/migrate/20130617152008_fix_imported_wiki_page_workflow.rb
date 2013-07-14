@@ -1,5 +1,5 @@
 class FixImportedWikiPageWorkflow < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     DataFixup::FixImportedWikiPageWorkflow.send_later_if_production_enqueue_args(:run,

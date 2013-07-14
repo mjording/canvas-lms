@@ -1,9 +1,9 @@
 class DropUserCreationColumns < ActiveRecord::Migration
   def self.up
-    remove_index :users, 'users_sis_creation'
-    remove_column :users, :creation_unique_id
-    remove_column :users, :creation_sis_batch_id
-    remove_column :users, :creation_email
+    #remove_index :users, 'users_sis_creation'
+    #remove_column :users, :creation_unique_id
+    #remove_column :users, :creation_sis_batch_id
+    #remove_column :users, :creation_email
   end
 
   def self.down

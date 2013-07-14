@@ -1,5 +1,5 @@
 class AddHomeworkSubmissionForExternalTools < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
   def self.up
     add_column :context_external_tools, :has_homework_submission, :boolean
   end

@@ -1,5 +1,5 @@
 class ConversationDataUpdate < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     SubmissionComment.connection.select_all("SELECT DISTINCT submission_id AS id FROM submission_comments WHERE NOT hidden").

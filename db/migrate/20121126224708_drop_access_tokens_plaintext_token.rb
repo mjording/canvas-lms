@@ -1,5 +1,5 @@
 class DropAccessTokensPlaintextToken < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     remove_column :access_tokens, :token

@@ -1,5 +1,5 @@
 class ChangeEventStreamFailuresExceptionToText < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     change_column :event_stream_failures, :exception, :text

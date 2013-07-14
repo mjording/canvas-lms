@@ -1,5 +1,5 @@
 class AddProfiles < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :profiles do |t|

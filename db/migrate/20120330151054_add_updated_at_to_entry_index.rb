@@ -1,5 +1,5 @@
 class AddUpdatedAtToEntryIndex < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :discussion_topic_materialized_views, :generation_started_at, :timestamp

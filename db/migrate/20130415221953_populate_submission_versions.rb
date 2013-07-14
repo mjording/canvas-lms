@@ -1,5 +1,5 @@
 class PopulateSubmissionVersions < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     DataFixup::PopulateSubmissionVersions.send_later_if_production_enqueue_args(:run,

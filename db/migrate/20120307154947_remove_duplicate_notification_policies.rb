@@ -1,5 +1,5 @@
 class RemoveDuplicateNotificationPolicies < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     DataFixup::RemoveDuplicateNotificationPolicies.send_later_if_production(:run)

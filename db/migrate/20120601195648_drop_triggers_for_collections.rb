@@ -3,7 +3,7 @@
 # will be undone by the next auto-generated trigger migration.
 
 class DropTriggersForCollections < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   # we had to switch to another strategy rather than triggers because the
   # different rows might be in different databases

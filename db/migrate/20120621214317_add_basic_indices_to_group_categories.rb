@@ -1,5 +1,5 @@
 class AddBasicIndicesToGroupCategories < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     add_index :group_categories, [:context_id, :context_type], :name => "index_group_categories_on_context"

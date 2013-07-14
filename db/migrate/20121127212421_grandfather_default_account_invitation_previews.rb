@@ -1,6 +1,6 @@
 class GrandfatherDefaultAccountInvitationPreviews < ActiveRecord::Migration
   # yes, predeploy, so that the setting is preserved before the new code goes live
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     return unless Shard.current == Account.default.shard

@@ -1,5 +1,5 @@
 class DropHashtags < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     drop_table :short_message_associations

@@ -1,5 +1,5 @@
 class AddGroupLimitToGroupCategory < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :group_categories, :group_limit, :integer

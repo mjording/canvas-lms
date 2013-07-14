@@ -1,5 +1,5 @@
 class RecalculateCourseAccountAssociations < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     # a bug was fixed in Course.update_account_associations; we need to recalculate them all

@@ -1,5 +1,5 @@
 class AddAssignmentDueDateOverrideNotifications < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     return unless Shard.current.default?

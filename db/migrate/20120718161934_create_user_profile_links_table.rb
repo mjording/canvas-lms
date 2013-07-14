@@ -1,5 +1,5 @@
 class CreateUserProfileLinksTable < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :user_profile_links do |t|

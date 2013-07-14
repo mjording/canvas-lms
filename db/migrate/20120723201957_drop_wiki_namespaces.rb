@@ -1,5 +1,5 @@
 class DropWikiNamespaces < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     drop_table :wiki_namespaces

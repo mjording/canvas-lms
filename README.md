@@ -1,4 +1,4 @@
-Canvas LMS
+20120104183918Canvas LMS
 ======
 
 Canvas is a new, open-source LMS by Instructure Inc. It is released under the

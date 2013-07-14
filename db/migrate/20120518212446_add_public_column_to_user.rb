@@ -1,5 +1,5 @@
 class AddPublicColumnToUser < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :users, :public, :boolean

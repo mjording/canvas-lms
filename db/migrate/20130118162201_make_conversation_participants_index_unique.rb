@@ -1,6 +1,6 @@
 class MakeConversationParticipantsIndexUnique < ActiveRecord::Migration
-  self.transactional = false
-  tag :predeploy
+  #self.transactional = false
+  #tag :predeploy
 
   def self.up
     add_index :conversation_participants, [:conversation_id, :user_id], :unique => true, :concurrently => true

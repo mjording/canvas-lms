@@ -1,5 +1,5 @@
 class AddIgnores < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :ignores do |t|

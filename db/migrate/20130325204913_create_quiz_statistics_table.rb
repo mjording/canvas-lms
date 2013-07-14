@@ -1,5 +1,5 @@
 class CreateQuizStatisticsTable < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :quiz_statistics do |t|

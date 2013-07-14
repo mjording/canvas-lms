@@ -1,5 +1,5 @@
 class DropCustomFieldTables < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     # these tables may not have ever been created

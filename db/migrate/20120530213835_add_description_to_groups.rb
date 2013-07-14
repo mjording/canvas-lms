@@ -1,5 +1,5 @@
 class AddDescriptionToGroups < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :groups, :description, :text

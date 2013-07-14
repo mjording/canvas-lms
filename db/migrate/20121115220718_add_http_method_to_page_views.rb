@@ -1,5 +1,5 @@
 class AddHttpMethodToPageViews < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :page_views, :http_method, :string

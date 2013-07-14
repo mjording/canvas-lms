@@ -1,5 +1,5 @@
 class RemoveUnusedNotificationPolicies < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     ids = Notification.where(:category => ['Student Message', 'Files']).pluck(:id)

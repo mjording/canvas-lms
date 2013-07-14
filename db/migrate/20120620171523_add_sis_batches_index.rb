@@ -1,7 +1,7 @@
 class AddSisBatchesIndex < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
-  self.transactional = false
+  #self.transactional = false
 
   def self.up
     # this index may or may not have been created on dev boxes

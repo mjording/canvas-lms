@@ -1,5 +1,5 @@
 class DropPageViewRanges < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     drop_table :page_view_ranges

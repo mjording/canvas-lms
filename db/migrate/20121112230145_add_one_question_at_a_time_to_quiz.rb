@@ -1,5 +1,5 @@
 class AddOneQuestionAtATimeToQuiz < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :quizzes, :one_question_at_a_time, :boolean

@@ -1,5 +1,5 @@
 class MoveContentExportNotificationsToMigrationCategory < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     DataFixup::MoveContentExportNotificationsToMigrationCategory.send_later_if_production(:run)

@@ -1,5 +1,5 @@
 class AddQuizIdToAssignmentOverrideStudents < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :assignment_override_students, :quiz_id, :integer, :limit => 8

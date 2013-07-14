@@ -1,5 +1,5 @@
 class AddAppliesToToRoleOverrides < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :role_overrides, :applies_to_self, :boolean, :default => true, :null => false

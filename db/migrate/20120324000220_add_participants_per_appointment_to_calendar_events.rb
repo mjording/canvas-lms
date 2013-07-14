@@ -1,5 +1,5 @@
 class AddParticipantsPerAppointmentToCalendarEvents < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     change_table :calendar_events do |t|

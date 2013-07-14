@@ -1,5 +1,5 @@
 class InitializeSubmissionCachedDueDate < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     DataFixup::InitializeSubmissionCachedDueDate.send_later_if_production(:run)

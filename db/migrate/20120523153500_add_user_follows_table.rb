@@ -1,5 +1,5 @@
 class AddUserFollowsTable < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :user_follows do |t|

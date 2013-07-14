@@ -1,6 +1,6 @@
 class AddGroupCategoryIndexToGroups < ActiveRecord::Migration
-  tag :postdeploy
-  self.transactional = false
+  #tag :postdeploy
+  #self.transactional = false
 
   def self.up
     add_index :groups, :group_category_id, :concurrently => true

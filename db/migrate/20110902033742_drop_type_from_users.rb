@@ -1,7 +1,7 @@
 class DropTypeFromUsers < ActiveRecord::Migration
   def self.up
-    remove_index :users, :type
-    remove_column :users, :type
+    #remove_index :users, :type
+    #remove_column :users, :type
   end
 
   def self.down

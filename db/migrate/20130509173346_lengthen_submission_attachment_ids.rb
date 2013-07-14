@@ -1,5 +1,5 @@
 class LengthenSubmissionAttachmentIds < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     change_column :submissions, :attachment_ids, :text

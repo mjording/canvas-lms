@@ -1,5 +1,5 @@
 class AddOutcomeStandardsColumns < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :learning_outcomes, :vendor_guid, :string

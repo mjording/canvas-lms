@@ -1,5 +1,5 @@
 class AddMessagesHtmlBody < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :messages, :html_body, :text

@@ -1,5 +1,5 @@
 class UniquifyWikis < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     # The model no longer exists, so I can't even use it as the basis of the query

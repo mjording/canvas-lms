@@ -1,5 +1,5 @@
 class AddQuizStatisticsForeignKey < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_foreign_key :quiz_statistics, :quizzes

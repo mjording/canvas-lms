@@ -1,5 +1,5 @@
 class AddSourceCourseToContentMigration < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :content_migrations, :source_course_id, :integer, :limit => 8

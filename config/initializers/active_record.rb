@@ -588,105 +588,105 @@ class ActiveRecord::Base
     end
   end
 
-  class << self
-    def deconstruct_joins
-      joins_sql = ''
-      add_joins!(joins_sql, nil)
-      tables = []
-      join_conditions = []
-      joins_sql.strip.split('INNER JOIN')[1..-1].each do |join|
-        # this could probably be improved
-        raise "PostgreSQL update_all/delete_all only supports INNER JOIN" unless join.strip =~ /([a-zA-Z'"_]+)\s+ON\s+(.*)/
-        tables << $1
-        join_conditions << $2
-      end
-      [tables, join_conditions]
-    end
+  #class << self
+    #def deconstruct_joins
+      #joins_sql = ''
+      #add_joins!(joins_sql, nil)
+      #tables = []
+      #join_conditions = []
+      #joins_sql.strip.split('INNER JOIN')[1..-1].each do |join|
+        ## this could probably be improved
+        #raise "PostgreSQL update_all/delete_all only supports INNER JOIN" unless join.strip =~ /([a-zA-Z'"_]+)\s+ON\s+(.*)/
+        #tables << $1
+        #join_conditions << $2
+      #end
+      #[tables, join_conditions]
+    #end
 
-    def update_all_with_joins(updates, conditions = nil, options = {})
-      scope = scope(:find)
-      if scope && scope[:joins]
-        case connection.adapter_name
-        when 'PostgreSQL'
-          sql  = "UPDATE #{quoted_table_name} SET #{sanitize_sql_for_assignment(updates)} "
+    #def update_all_with_joins(updates, conditions = nil, options = {})
+      #scope = scope(:find)
+      #if scope && scope[:joins]
+        #case connection.adapter_name
+        #when 'PostgreSQL'
+          #sql  = "UPDATE #{quoted_table_name} SET #{sanitize_sql_for_assignment(updates)} "
 
-          tables, join_conditions = deconstruct_joins
+          #tables, join_conditions = deconstruct_joins
 
-          unless tables.empty?
-            sql.concat('FROM ')
-            sql.concat(tables.join(', '))
-            sql.concat(' ')
-          end
+          #unless tables.empty?
+            #sql.concat('FROM ')
+            #sql.concat(tables.join(', '))
+            #sql.concat(' ')
+          #end
 
-          conditions = merge_conditions(conditions, *join_conditions)
-        when 'MySQL', 'Mysql2'
-          sql  = "UPDATE #{quoted_table_name}"
-          add_joins!(sql, nil, scope)
-          sql << " SET "
-          # can't just use sanitize_sql_for_assignment cause MySQL supports
-          # updating multiple tables in a single statement, so we have to
-          # qualify the column names
-          sql << case updates
-             when Array
-               sanitize_sql_array(updates)
-             when Hash;
-               updates.map do |attr, value|
-                 "#{quoted_table_name}.#{connection.quote_column_name(attr)} = #{quote_bound_value(value)}"
-               end.join(', ')
-             else
-               updates
-             end << " "
-        else
-          raise "Joins in update not supported!"
-        end
-        select_sql = ""
-        add_conditions!(select_sql, conditions, scope)
+          #conditions = merge_conditions(conditions, *join_conditions)
+        #when 'MySQL', 'Mysql2'
+          #sql  = "UPDATE #{quoted_table_name}"
+          #add_joins!(sql, nil, scope)
+          #sql << " SET "
+          ## can't just use sanitize_sql_for_assignment cause MySQL supports
+          ## updating multiple tables in a single statement, so we have to
+          ## qualify the column names
+          #sql << case updates
+             #when Array
+               #sanitize_sql_array(updates)
+             #when Hash;
+               #updates.map do |attr, value|
+                 #"#{quoted_table_name}.#{connection.quote_column_name(attr)} = #{quote_bound_value(value)}"
+               #end.join(', ')
+             #else
+               #updates
+             #end << " "
+        #else
+          #raise "Joins in update not supported!"
+        #end
+        #select_sql = ""
+        #add_conditions!(select_sql, conditions, scope)
 
-        if options.has_key?(:limit) || (scope && scope[:limit])
-          # Only take order from scope if limit is also provided by scope, this
-          # is useful for updating a has_many association with a limit.
-          add_order!(select_sql, options[:order], scope)
+        #if options.has_key?(:limit) || (scope && scope[:limit])
+          ## Only take order from scope if limit is also provided by scope, this
+          ## is useful for updating a has_many association with a limit.
+          #add_order!(select_sql, options[:order], scope)
 
-          add_limit!(select_sql, options, scope)
-          sql.concat(connection.limited_update_conditions(select_sql, quoted_table_name, connection.quote_column_name(primary_key)))
-        else
-          add_order!(select_sql, options[:order], nil)
-          sql.concat(select_sql)
-        end
+          #add_limit!(select_sql, options, scope)
+          #sql.concat(connection.limited_update_conditions(select_sql, quoted_table_name, connection.quote_column_name(primary_key)))
+        #else
+          #add_order!(select_sql, options[:order], nil)
+          #sql.concat(select_sql)
+        #end
 
-        return connection.update(sql, "#{name} Update")
-      end
-      update_all_without_joins(updates, conditions, options)
-    end
-    alias_method_chain :update_all, :joins
+        #return connection.update(sql, "#{name} Update")
+      #end
+      #update_all_without_joins(updates, conditions, options)
+    #end
+    #alias_method_chain :update_all, :joins
 
-    def delete_all_with_joins(conditions = nil)
-      scope = scope(:find)
-      if scope && scope[:joins]
-        case connection.adapter_name
-        when 'PostgreSQL'
-          sql = "DELETE FROM #{quoted_table_name} "
+    #def delete_all_with_joins(conditions = nil)
+      #scope = scope(:find)
+      #if scope && scope[:joins]
+        #case connection.adapter_name
+        #when 'PostgreSQL'
+          #sql = "DELETE FROM #{quoted_table_name} "
 
-          tables, join_conditions = deconstruct_joins
+          #tables, join_conditions = deconstruct_joins
 
-          sql.concat('USING ')
-          sql.concat(tables.join(', '))
-          sql.concat(' ')
+          #sql.concat('USING ')
+          #sql.concat(tables.join(', '))
+          #sql.concat(' ')
 
-          conditions = merge_conditions(conditions, *join_conditions)
-        when 'MySQL', 'Mysql2'
-          sql = "DELETE #{quoted_table_name} FROM #{quoted_table_name}"
-          add_joins!(sql, nil, scope)
-        else
-          raise "Joins in delete not supported!"
-        end
-        add_conditions!(sql, conditions, scope)
-        return connection.delete(sql, "#{name} Delete all")
-      end
-      delete_all_without_joins(conditions)
-    end
-    alias_method_chain :delete_all, :joins
-  end
+          #conditions = merge_conditions(conditions, *join_conditions)
+        #when 'MySQL', 'Mysql2'
+          #sql = "DELETE #{quoted_table_name} FROM #{quoted_table_name}"
+          #add_joins!(sql, nil, scope)
+        #else
+          #raise "Joins in delete not supported!"
+        #end
+        #add_conditions!(sql, conditions, scope)
+        #return connection.delete(sql, "#{name} Delete all")
+      #end
+      #delete_all_without_joins(conditions)
+    #end
+    #alias_method_chain :delete_all, :joins
+  #end
 end
 
 ActiveRecord::ConnectionAdapters::AbstractAdapter.class_eval do
@@ -1069,163 +1069,163 @@ if defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
   end
 end
 
-class ActiveRecord::Migration
-  VALID_TAGS = [:predeploy, :postdeploy, :cassandra]
-  # at least one of these tags is required
-  DEPLOY_TAGS = [:predeploy, :postdeploy]
+#class ActiveRecord::Migration
+  #VALID_TAGS = [:predeploy, :postdeploy, :cassandra]
+  ## at least one of add_joinsthese tags is required
+  #DEPLOY_TAGS = [:predeploy, :postdeploy]
 
-  class << self
-    def transactional?
-      @transactional != false
-    end
-    def transactional=(value)
-      @transactional = !!value
-    end
+  #class << self
+    #def transactional?
+      #@transactional != false
+    #end
+    #def transactional=(value)
+      #@transactional = !!value
+    #end
 
-    def tag(*tags)
-      raise "invalid tags #{tags.inspect}" unless tags - VALID_TAGS == []
-      (@tags ||= []).concat(tags).uniq!
-    end
+    #def tag(*tags)
+      #raise "invalid tags #{tags.inspect}" unless tags - VALID_TAGS == []
+      #(@tags ||= []).concat(tags).uniq!
+    #end
 
-    def tags
-      @tags ||= []
-    end
+    #def tags
+      #@tags ||= []
+    #end
 
-    def is_postgres?
-      connection.adapter_name == 'PostgreSQL'
-    end
+    #def is_postgres?
+      #connection.adapter_name == 'PostgreSQL'
+    #end
 
-    def has_postgres_proc?(procname)
-      connection.select_value("SELECT COUNT(*) FROM pg_proc WHERE proname='#{procname}'").to_i != 0
-    end
+    #def has_postgres_proc?(procname)
+      #connection.select_value("SELECT COUNT(*) FROM pg_proc WHERE proname='#{procname}'").to_i != 0
+    #end
 
-  end
+  #end
 
-  def transactional?
-    connection.supports_ddl_transactions? && self.class.transactional?
-  end
+  #def transactional?
+    #connection.supports_ddl_transactions? && self.class.transactional?
+  #end
 
-  def tags
-    self.class.tags
-  end
-end
+  #def tags
+    #self.class.tags
+  #end
+#end
 
-class ActiveRecord::MigrationProxy
-  delegate :connection, :transactional?, :tags, :to => :migration
+#class ActiveRecord::MigrationProxy
+  #delegate :connection, :transactional?, :tags, :to => :migration
 
-  def runnable?
-    !migration.respond_to?(:runnable?) || migration.runnable?
-  end
+  #def runnable?
+    #!migration.respond_to?(:runnable?) || migration.runnable?
+  #end
 
-  def load_migration
-    load(filename)
-    @migration = name.constantize
-    raise "#{self.name} (#{self.version}) is not tagged as predeploy or postdeploy!" if (@migration.tags & ActiveRecord::Migration::DEPLOY_TAGS).empty? && self.version > 20120217214153
-    @migration
-  end
-end
+  #def load_migration
+    #load(filename)
+    #@migration = name.constantize
+    #raise "#{self.name} (#{self.version}) is not tagged as predeploy or postdeploy!" if (@migration.tags & ActiveRecord::Migration::DEPLOY_TAGS).empty? && self.version > 20120217214153
+    #@migration
+  #end
+#end
 
-class ActiveRecord::Migrator
-  def self.migrations_paths
-    @@migration_paths ||= []
-  end
+#class ActiveRecord::Migrator
+  #def self.migrations_paths
+    #@@migration_paths ||= []
+  #end
 
-  def migrations
-    @@migrations ||= begin
-      files = ([@migrations_path].compact + self.class.migrations_paths).uniq.
-        map { |p| Dir["#{p}/[0-9]*_*.rb"] }.flatten
+  #def migrations
+    #@@migrations ||= begin
+      #files = ([@migrations_path].compact + self.class.migrations_paths).uniq.
+        #map { |p| Dir["#{p}/[0-9]*_*.rb"] }.flatten
 
-      migrations = files.inject([]) do |klasses, file|
-        version, name = file.scan(/([0-9]+)_([_a-z0-9]*).rb/).first
+      #migrations = files.inject([]) do |klasses, file|
+        #version, name = file.scan(/([0-9]+)_([_a-z0-9]*).rb/).first
 
-        raise ActiveRecord::IllegalMigrationNameError.new(file) unless version
-        version = version.to_i
+        #raise ActiveRecord::IllegalMigrationNameError.new(file) unless version
+        #version = version.to_i
 
-        if klasses.detect { |m| m.version == version }
-          raise ActiveRecord::DuplicateMigrationVersionError.new(version)
-        end
+        #if klasses.detect { |m| m.version == version }
+          #raise ActiveRecord::DuplicateMigrationVersionError.new(version)
+        #end
 
-        if klasses.detect { |m| m.name == name.camelize }
-          raise ActiveRecord::DuplicateMigrationNameError.new(name.camelize)
-        end
+        #if klasses.detect { |m| m.name == name.camelize }
+          #raise ActiveRecord::DuplicateMigrationNameError.new(name.camelize)
+        #end
 
-        klasses << (ActiveRecord::MigrationProxy.new).tap do |migration|
-          migration.name     = name.camelize
-          migration.version  = version
-          migration.filename = file
-        end
-      end
+        #klasses << (ActiveRecord::MigrationProxy.new).tap do |migration|
+          #migration.name     = name.camelize
+          #migration.version  = version
+          #migration.filename = file
+        #end
+      #end
 
-      migrations = migrations.sort_by(&:version)
-      down? ? migrations.reverse : migrations
-    end
-  end
+      #migrations = migrations.sort_by(&:version)
+      #down? ? migrations.reverse : migrations
+    #end
+  #end
 
-  def pending_migrations_with_runnable
-    pending_migrations_without_runnable.reject { |m| !m.runnable? }
-  end
-  alias_method_chain :pending_migrations, :runnable
+  #def pending_migrations_with_runnable
+    #pending_migrations_without_runnable.reject { |m| !m.runnable? }
+  #end
+  #alias_method_chain :pending_migrations, :runnable
 
-  def migrate(tag = nil)
-    current = migrations.detect { |m| m.version == current_version }
-    target = migrations.detect { |m| m.version == @target_version }
+  ##def migrate(tag = nil)
+    ##current = migrations.detect { |m| m.version == current_version }
+    ##target = migrations.detect { |m| m.version == @target_version }
 
-    if target.nil? && !@target_version.nil? && @target_version > 0
-      raise UnknownMigrationVersionError.new(@target_version)
-    end
+    ##if target.nil? && !@target_version.nil? && @target_version > 0
+      ##raise UnknownMigrationVersionError.new(@target_version)
+    ##end
 
-    start = up? ? 0 : (migrations.index(current) || 0)
-    finish = migrations.index(target) || migrations.size - 1
-    runnable = migrations[start..finish]
+    ##start = up? ? 0 : (migrations.index(current) || 0)
+    ##finish = migrations.index(target) || migrations.size - 1
+    ##runnable = migrations[start..finish]
 
-    # skip the last migration if we're headed down, but not ALL the way down
-    runnable.pop if down? && !target.nil?
+    ### skip the last migration if we're headed down, but not ALL the way down
+    ##runnable.pop if down? && !target.nil?
 
-    runnable.each do |migration|
-      ActiveRecord::Base.logger.info "Migrating to #{migration.name} (#{migration.version})"
+    ##runnable.each do |migration|
+      ##ActiveRecord::Base.logger.info "Migrating to #{migration.name} (#{migration.version})"
 
-      # On our way up, we skip migrating the ones we've already migrated
-      next if up? && migrated.include?(migration.version.to_i)
+      ### On our way up, we skip migrating the ones we've already migrated
+      ##next if up? && migrated.include?(migration.version.to_i)
 
-      # On our way down, we skip reverting the ones we've never migrated
-      if down? && !migrated.include?(migration.version.to_i)
-        migration.announce 'never migrated, skipping'; migration.write
-        next
-      end
+      ### On our way down, we skip reverting the ones we've never migrated
+      ##if down? && !migrated.include?(migration.version.to_i)
+        ##migration.announce 'never migrated, skipping'; migration.write
+        ##next
+      ##end
 
-      next if !tag.nil? && !migration.tags.include?(tag)
-      next if !migration.runnable?
+      ##next if !tag.nil? && !migration.tags.include?(tag)
+      ##next if !migration.runnable?
 
-      begin
-        if down? && !Rails.env.test? && !$confirmed_migrate_down
-          require 'highline'
-          if HighLine.new.ask("Revert migration #{migration.name} (#{migration.version}) ? [y/N/a] > ") !~ /^([ya])/i
-            raise("Revert not confirmed")
-          end
-          $confirmed_migrate_down = true if $1.downcase == 'a'
-        end
+      ##begin
+        ##if down? && !Rails.env.test? && !$confirmed_migrate_down
+          ##require 'highline'
+          ##if HighLine.new.ask("Revert migration #{migration.name} (#{migration.version}) ? [y/N/a] > ") !~ /^([ya])/i
+            ##raise("Revert not confirmed")
+          ##end
+          ##$confirmed_migrate_down = true if $1.downcase == 'a'
+        ##end
 
-        ddl_transaction(migration) do
-          migration.migrate(@direction)
-          record_version_state_after_migrating(migration.version) unless tag == :predeploy && migration.tags.include?(:postdeploy)
-        end
-      rescue => e
-        canceled_msg = migration.transactional? ? "this and " : ""
-        raise StandardError, "An error has occurred, #{canceled_msg}all later migrations canceled:\n\n#{e}", e.backtrace
-      end
-    end
-  end
+        ##ddl_transaction(migration) do
+          ##migration.migrate(@direction)
+          ##record_version_state_after_migrating(migration.version) unless tag == :predeploy && migration.tags.include?(:postdeploy)
+        ##end
+      ##rescue => e
+        ##canceled_msg = migration.transactional? ? "this and " : ""
+        ##raise StandardError, "An error has occurred, #{canceled_msg}all later migrations canceled:\n\n#{e}", e.backtrace
+      ##end
+    ##end
+  ##end
 
-  def ddl_transaction(migration)
-    if migration.transactional?
-      migration.connection.transaction { yield }
-    else
-      yield
-    end
-  end
-end
+  #def ddl_transaction(migration)
+    #if migration.transactional?
+      #migration.connection.transaction { yield }
+    #else
+      #yield
+    #end
+  #end
+#end
 
-ActiveRecord::Migrator.migrations_paths.concat Dir[Rails.root.join('vendor', 'plugins', '*', 'db', 'migrate')]
+#ActiveRecord::Migrator.migrations_paths.concat Dir[Rails.root.join('vendor', 'plugins', '*', 'db', 'migrate')]
 ActiveRecord::ConnectionAdapters::SchemaStatements.class_eval do
   def add_index_with_length_raise(table_name, column_name, options = {})
     unless options[:name].to_s =~ /^temp_/

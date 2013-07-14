@@ -1,5 +1,5 @@
 class UpdateCollectionItemColumns < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     rename_column :collection_items, :description, :user_comment

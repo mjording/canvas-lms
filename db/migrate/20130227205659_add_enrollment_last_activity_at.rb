@@ -1,5 +1,5 @@
 class AddEnrollmentLastActivityAt < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :enrollments, :last_activity_at, :datetime

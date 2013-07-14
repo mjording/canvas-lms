@@ -1,5 +1,5 @@
 class AddPseudonymToStudentViewStudents < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     DataFixup::AddPseudonymToStudentViewStudents.send_later_if_production(:run)

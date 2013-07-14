@@ -1,5 +1,5 @@
 class LengthenOauthReturnUrl < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     change_column :oauth_requests, :return_url, :string, :limit => 4.kilobytes

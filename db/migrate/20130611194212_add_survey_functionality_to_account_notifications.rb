@@ -1,5 +1,5 @@
 class AddSurveyFunctionalityToAccountNotifications < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :account_notifications, :required_account_service, :string

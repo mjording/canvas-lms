@@ -1,5 +1,5 @@
 class RemoveContextModuleAssociationIdFromContentTags < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     remove_column :content_tags, :context_module_association_id

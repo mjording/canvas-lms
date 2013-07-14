@@ -1,6 +1,6 @@
 class AddForeignKeys2 < ActiveRecord::Migration
-  self.transactional = false
-  tag :postdeploy
+  #self.transactional = false
+  #tag :postdeploy
 
   def self.up
     add_foreign_key_if_not_exists :assessment_requests, :rubric_associations, :delay_validation => true

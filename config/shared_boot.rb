@@ -12,7 +12,7 @@
 config.time_zone = 'UTC'
 
 if ENV['RUNNING_AS_DAEMON'] == 'true'
-  config.log_path = Rails.root+'log/delayed_job.log'
+  #config.log_path = Rails.root+'log/delayed_job.log'
 end
 
 log_config = File.exists?(Rails.root+"config/logging.yml") && YAML.load_file(Rails.root+"config/logging.yml")[CANVAS_RAILS3 ? Rails.env : RAILS_ENV]

@@ -1,5 +1,5 @@
 class LengthenProfileLinksUrl < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     change_column :user_profile_links, :url, :string, :limit => 4.kilobytes

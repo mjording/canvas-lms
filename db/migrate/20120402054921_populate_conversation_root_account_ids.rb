@@ -1,6 +1,6 @@
 class PopulateConversationRootAccountIds < ActiveRecord::Migration
-  tag :predeploy
-  self.transactional = false
+  #tag :predeploy
+  #self.transactional = false
 
   def self.up
     DataFixup::PopulateConversationRootAccountIds.run

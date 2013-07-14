@@ -1,5 +1,5 @@
 class AddAssignmentLock < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :assignments, :freeze_on_copy, :boolean

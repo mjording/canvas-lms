@@ -1,9 +1,9 @@
 class ReassociateConversationAttachments < ActiveRecord::Migration
-  tag :postdeploy
-  self.transactional = false
+  #tag :postdeploy
+  #self.transactional = false
 
   def self.up
-    DataFixup::ReassociateConversationAttachments.send_later_if_production(:run)
+    #DataFixup::ReassociateConversationAttachments.send_later_if_production(:run)
   end
 
   def self.down

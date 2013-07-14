@@ -1,6 +1,6 @@
 class AddUniqueIndexOnCourseAccountAssociations < ActiveRecord::Migration
-  tag :predeploy
-  self.transactional = false
+  #tag :predeploy
+  #self.transactional = false
 
   def self.up
     # clean up any dups first

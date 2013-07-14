@@ -1,5 +1,5 @@
 class AddLastInlineViewToAttachments < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :attachments, :last_inline_view, :datetime

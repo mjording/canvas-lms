@@ -1,5 +1,5 @@
 class MigrateAppointmentGroupContexts < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     records = AppointmentGroup.all.map { |ag|

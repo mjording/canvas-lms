@@ -1,5 +1,5 @@
 class DropUserBio < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     remove_column :users, :bio

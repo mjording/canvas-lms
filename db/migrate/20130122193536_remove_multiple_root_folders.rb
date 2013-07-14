@@ -1,6 +1,6 @@
 class RemoveMultipleRootFolders < ActiveRecord::Migration
-  tag :postdeploy
-  self.transactional = false
+  #tag :postdeploy
+  #self.transactional = false
 
   def self.up
     DataFixup::RemoveMultipleRootFolders.run

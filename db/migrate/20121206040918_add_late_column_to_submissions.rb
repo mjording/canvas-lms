@@ -1,5 +1,5 @@
 class AddLateColumnToSubmissions < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
   
   def self.up
     add_column :submissions, :late, :boolean

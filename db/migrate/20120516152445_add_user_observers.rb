@@ -1,6 +1,6 @@
 class AddUserObservers < ActiveRecord::Migration
-  self.transactional = false
-  tag :predeploy
+  #self.transactional = false
+  #tag :predeploy
 
   def self.up
     create_table :user_observers do |t|

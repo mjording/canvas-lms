@@ -1,5 +1,5 @@
 class AddUploadErrorCodeToAttachments < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :attachments, :upload_error_message, :string

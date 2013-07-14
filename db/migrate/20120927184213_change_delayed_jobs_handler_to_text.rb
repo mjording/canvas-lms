@@ -1,5 +1,5 @@
 class ChangeDelayedJobsHandlerToText < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.connection
     Delayed::Job.connection

@@ -1,5 +1,5 @@
 class RemoveAttachmentsWithNoScopeFromList < ActiveRecord::Migration
-  self.transactional = false
+  #self.transactional = false
 
   def self.up
     if Attachment.maximum(:id)

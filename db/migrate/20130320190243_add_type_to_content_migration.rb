@@ -1,5 +1,5 @@
 class AddTypeToContentMigration < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     add_column :content_migrations, :migration_type, :string

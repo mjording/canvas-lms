@@ -1,5 +1,5 @@
 class DropCalendarEventsExternalFeedId < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     remove_column :calendar_events, :external_feed_id

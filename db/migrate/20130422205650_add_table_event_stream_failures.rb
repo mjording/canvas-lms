@@ -1,5 +1,5 @@
 class AddTableEventStreamFailures < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     create_table :event_stream_failures do |t|

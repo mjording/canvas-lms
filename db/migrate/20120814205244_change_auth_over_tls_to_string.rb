@@ -1,5 +1,5 @@
 class ChangeAuthOverTlsToString < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     # existing Rails process will continue seeing it as boolean until they restart;

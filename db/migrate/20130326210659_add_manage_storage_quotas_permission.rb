@@ -1,5 +1,5 @@
 class AddManageStorageQuotasPermission < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     DataFixup::CopyRoleOverrides.send_later_if_production_enqueue_args(:run,

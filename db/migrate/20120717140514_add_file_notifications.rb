@@ -1,5 +1,5 @@
 class AddFileNotifications < ActiveRecord::Migration
-  tag :predeploy
+  #tag :predeploy
 
   def self.up
     # (shard check added later; dupes removed in AddUniqueIndexOnNotifications)

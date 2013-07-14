@@ -1,5 +1,5 @@
 class FixBrokenFileLinksInAssignments < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
   def self.up
     DataFixup::FixBrokenFileLinksInAssignments.send_later_if_production_enqueue_args(:run,

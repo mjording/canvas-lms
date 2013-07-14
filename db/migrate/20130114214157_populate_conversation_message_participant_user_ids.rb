@@ -1,7 +1,6 @@
 class PopulateConversationMessageParticipantUserIds < ActiveRecord::Migration
-  tag :postdeploy
+  #tag :postdeploy
 
-  def self.up
-    DataFixup::PopulateConversationMessageParticipantUserIds.send_later_if_production(:run)
-  end
+    #DataFixup::PopulateConversationMessageParticipantUserIds.send_later_if_production(:run)
+  #end
 end

@@ -1,6 +1,6 @@
 class AddMessageAccountId < ActiveRecord::Migration
-  tag :predeploy
-  self.transactional = false
+  #tag :predeploy
+  #self.transactional = false
 
   def self.up
     add_column :messages, :root_account_id, :integer, :limit => 8
