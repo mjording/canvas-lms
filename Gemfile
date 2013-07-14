@@ -35,7 +35,7 @@ if !CANVAS_RAILS3
 end
 gem 'ffi',            '1.1.5'
 gem 'hairtrigger',    '0.2.3'
-gem 'sass',           '3.2.3'
+#gem 'sass',           '3.2.3'
 gem 'hashery',        '1.3.0',  :require => 'hashery/dictionary'
 gem 'highline',       '1.6.1'
 gem 'i18n', '0.6.0'
@@ -82,9 +82,10 @@ gem 'xml-simple',     '1.0.12', :require => 'xmlsimple'
 gem 'foreigner',      '0.9.2'
 gem 'crocodoc-ruby',  '0.0.1', :require => 'crocodoc'
 gem 'regru-premailer', '1.7.7', :require => 'premailer'
-
+gem 'sprockets-rails',  :require => 'sprockets/railtie'#, :git => 'git://github.com/rails/sprockets-rails.git', :branch => 'fix-3-0',  :require => 'sprockets/railtie'
 group :assets do
-  gem 'compass-rails', '1.0.3'
+  gem 'sass-rails'
+  gem 'compass-rails', '1.0.1'
   gem 'dress_code', '1.0.2'
 end
 

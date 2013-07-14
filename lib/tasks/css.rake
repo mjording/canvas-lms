@@ -9,6 +9,7 @@ namespace :css do
   task :generate do
     require 'config/initializers/plugin_symlinks'
     require 'action_controller'
+    require 'sprockets-rails'
     require 'compass-rails'
     require 'compass/commands'
 

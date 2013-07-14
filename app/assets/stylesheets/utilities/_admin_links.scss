@@ -1,0 +1,110 @@
+
+/*
+@styleguide Cogs (Admin Links)
+
+Cogs, *AKA admin links*, are generally floated to the right, make sure it's the right-most item in your UI. There are different cogs for the toolbar and content:
+<ul>
+<li>toolbar cogs are buttons with the cog and arrow inside</li>
+<li>content cogs are just the cog icon with the arrow and are generally used in the content areas, list items oir anything else that is NOT in a toolbar</li>
+</ul>
+**adding `class="admin-links"` to the container will float cog to the right**
+
+### Toolbar Cog (button + cog)
+
+```html
+<div>
+  <a class="al-trigger btn">
+    <i class="icon-settings"></i><i class="icon-mini-arrow-down"></i>
+    <span class="screenreader-only">Settings</span>
+  </a>
+  <ul class="al-options">
+    <li><a href="#" class="icon-edit">Edit</a></li>
+    <li><a href="#" class="icon-trash">Delete</a></li>
+    <li><a href="#" class="icon-lock">Lock</a></li>
+  </ul>
+</div>
+```
+
+### Content cog
+
+```html
+<div>
+  <a class="al-trigger">
+    <i class="icon-settings"></i><i class="icon-mini-arrow-down"></i>
+  </a>
+  <ul class="al-options">
+    <li><a href="#" class="icon-plus">Add</a></li>
+    <li><a href="#" class="icon-edit" title="Edit">Edit</a></li>
+    <li><a href="#" class="icon-trash" title="Delete this module">Delete</a></li>
+  </ul>
+</div>
+```
+
+*/
+
+.admin-links {
+  float: right;
+}
+.al-options {
+  display: none;
+  -webkit-font-smoothing: antialiased;
+  &.ui-menu{
+    display: block;
+  }
+}
+
+.al-options {
+  background-color: transparent;
+  border: none;
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0, 0.8);
+  position: absolute;
+  .ui-menu-item a {
+    background-color: black; /* ie<=8 */
+    background-color: rgba(0,0,0, 0.7);
+    color: #fff;
+    text-shadow: rgba(0,0,0,0.5) 1px 0 1px;
+    white-space: nowrap;
+  }
+  .ui-menu-carat {
+    border-color: transparent;
+  }
+  .ui-menu-carat span {
+    border-color: black transparent; /* ie<=8 */
+    border-color: rgba(0,0,0,0.7) transparent;
+  }
+  .ui-state-focus{
+    margin: 0 !important;
+    border: none;
+  }
+}
+
+.al-trigger-gray, .al-trigger-gray:hover {
+  color: #000;
+  @include opacity(0.6);
+}
+
+.admin-link-hover-area:hover .al-trigger,
+.admin-link-hover-area.active .al-trigger,
+.al-trigger.ui-state-active,
+.al-trigger:focus,
+.al-trigger:hover{
+  @include opacity(1);
+}
+
+.al-trigger {
+  padding: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.al-hover-container .al-trigger {
+  position: relative;
+  z-index: -1;
+}
+
+.al-hover-container:hover, .al-hover-container-active {
+  .al-trigger {
+    z-index: 0;
+  }
+}
+
