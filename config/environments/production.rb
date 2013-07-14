@@ -1,18 +1,41 @@
-environment_configuration(defined?(config) && config) do |config|
+#environment_configuration(defined?(config) && config) do |config|
+  # Settings specified here will take precedence over those in config/application.rb
+CanvasRails::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
-  # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  if CANVAS_RAILS3
+ if CANVAS_RAILS3
     config.consider_all_requests_local = false
-  else
+ else
     config.action_controller.consider_all_requests_local = false
     config.action_view.cache_template_loading            = true
-  end
+ end
+
+ config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+
+  # Disable Rails's static asset server (Apache or nginx will already do this)
+  config.serve_static_assets = false
+
+  # Compress JavaScripts and CSS
+  config.assets.compress = true
+
+  # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = false
+
+  # Generate digests for assets URLs
+  config.assets.digest = true
+  config.i18n.fallbacks = true
+
+  # Send deprecation notices to registered listeners
+  config.active_support.deprecation = :notify
+  # The production environment is meant for finished, "live" apps.
+  # Code is not reloaded between requests
+
+  # Full error reports are disabled and caching is turned on
 
   # run rake js:build to build the optimized JS if set to true
   ENV['USE_OPTIMIZED_JS']                              = "true"
