@@ -878,7 +878,8 @@ class User < ActiveRecord::Base
   end
 
   def courses_with_grades
-    self.available_courses.with_each_shard.select{|c| c.grants_right?(self, nil, :participate_as_student)}
+    #self.available_courses.with_each_shard.select{|c| c.grants_right?(self, nil, :participate_as_student)}
+    self.available_courses.select{|c| c.grants_right?(self, nil, :participate_as_student)}
   end
   memoize :courses_with_grades
 
@@ -1530,7 +1531,7 @@ class User < ActiveRecord::Base
   def courses_with_primary_enrollment(association = :current_and_invited_courses, enrollment_uuid = nil, options = {})
     res = self.shard.activate do
       Rails.cache.fetch([self, 'courses_with_primary_enrollment', association, options].cache_key, :expires_in => 15.minutes) do
-        send(association).with_each_shard do |scope|
+        send(association).try(:with_each_shard) do |scope|
           courses = scope.distinct_on(["courses.id"],
             :select => "courses.*, enrollments.id AS primary_enrollment_id, enrollments.type AS primary_enrollment, #{Enrollment.type_rank_sql} AS primary_enrollment_rank, enrollments.workflow_state AS primary_enrollment_state",
             :order => "courses.id, #{Enrollment.type_rank_sql}, #{Enrollment.state_rank_sql}")
@@ -1586,7 +1587,7 @@ class User < ActiveRecord::Base
   def cached_current_enrollments(opts={})
     self.shard.activate do
       res = Rails.cache.fetch([self, 'current_enrollments2', opts[:include_enrollment_uuid], opts[:include_future] ].cache_key) do
-        res = (opts[:include_future] ? current_and_future_enrollments : current_and_invited_enrollments).with_each_shard
+        res = (opts[:include_future] ? current_and_future_enrollments : current_and_invited_enrollments)
         if opts[:include_enrollment_uuid] && pending_enrollment = Enrollment.find_by_uuid_and_workflow_state(opts[:include_enrollment_uuid], "invited")
           res << pending_enrollment
           res.uniq!
@@ -1600,7 +1601,7 @@ class User < ActiveRecord::Base
   def cached_not_ended_enrollments
     self.shard.activate do
       @cached_all_enrollments = Rails.cache.fetch([self, 'not_ended_enrollments2'].cache_key) do
-        self.not_ended_enrollments.with_each_shard
+        self.not_ended_enrollments.try(:with_each_shard)
       end
     end
   end
@@ -1608,21 +1609,21 @@ class User < ActiveRecord::Base
   def cached_current_group_memberships
     self.shard.activate do
       @cached_current_group_memberships = Rails.cache.fetch([self, 'current_group_memberships'].cache_key) do
-        self.current_group_memberships.with_each_shard
+        self.current_group_memberships.try(:with_each_shard)
       end
     end
   end
 
   def current_student_enrollment_course_ids
     @current_student_enrollments ||= Rails.cache.fetch([self, 'current_student_enrollments'].cache_key) do
-      self.enrollments.with_each_shard { |scope| scope.student.select(:course_id) }
+      self.enrollments.try(:with_each_shard) { |scope| scope.student.select(:course_id) }
     end
     @current_student_enrollments.map(&:course_id)
   end
 
   def current_admin_enrollment_course_ids
     @current_admin_enrollments ||= Rails.cache.fetch([self, 'current_admin_enrollments'].cache_key) do
-      self.enrollments.with_each_shard { |scope| scope.admin.select(:course_id) }
+      self.enrollments.try(:with_each_shard) { |scope| scope.admin.select(:course_id) }
     end
     @current_admin_enrollments.map(&:course_id)
   end
@@ -1905,7 +1906,7 @@ class User < ActiveRecord::Base
 
         associations.inject([]) do |result, association|
           association_type = association.split('_')[-1].slice(0..-2)
-          result.concat(send(association).with_each_shard.map { |x| "#{association_type}_#{x.id}" })
+          result.concat(send(association).try(:with_each_shard).map { |x| "#{association_type}_#{x.id}" })
         end.uniq
       end
     end
@@ -2315,7 +2316,7 @@ class User < ActiveRecord::Base
   # mfa settings for a user are the most restrictive of any pseudonyms the user has
   # a login for
   def mfa_settings
-    result = self.pseudonyms.with_each_shard { |scope| scope.includes(:account) }.map(&:account).uniq.map do |account|
+    result = self.pseudonyms.try(:with_each_shard) { |scope| scope.includes(:account) }.map(&:account).uniq.map do |account|
       case account.mfa_settings
         when :disabled
           0
@@ -2401,17 +2402,17 @@ class User < ActiveRecord::Base
   end
 
   def accounts
-    self.account_users.with_each_shard { |scope| scope.includes(:account) }.map(&:account).uniq
+    self.account_users { |scope| scope.includes(:account) }.map(&:account).uniq
   end
   memoize :accounts
 
   def all_pseudonyms
-    self.pseudonyms.with_each_shard
+    self.pseudonyms
   end
   memoize :all_pseudonyms
 
   def all_active_pseudonyms
-    self.pseudonyms.with_each_shard { |scope| scope.active }
+    self.pseudonyms { |scope| scope.active }
   end
   memoize :all_active_pseudonyms
 
