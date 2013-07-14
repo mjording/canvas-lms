@@ -894,7 +894,8 @@ if defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
         @logger.warn("Index name '#{index_name}' on table '#{table_name}' is too long; the limit is #{index_name_length} characters. Skipping.")
         return
       end
-      if index_exists?(table_name, index_name, false)
+      #if index_exists?(table_name, index_name, false)
+      if index_exists?(table_name, index_name)
         @logger.warn("Index name '#{index_name}' on table '#{table_name}' already exists. Skipping.")
         return
       end

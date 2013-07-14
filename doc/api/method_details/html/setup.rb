@@ -25,9 +25,11 @@ def header
   get_routes
   @subtopic = (object.parent.tag('subtopic') || object.parent.tag('API')).text
   route = @routes.first
-  @method_link = "method.#{route.requirements[:controller]}.#{route.requirements[:action]}"
-  @beta = object.tag('beta') || object.parent.tag('beta')
-  erb(:header)
+  if route.present?
+    @method_link = "method.#{route.requirements[:controller]}.#{route.requirements[:action]}"
+    @beta = object.tag('beta') || object.parent.tag('beta')
+    erb(:header)
+  end
 end
 
 def get_routes
@@ -36,6 +38,6 @@ def get_routes
   @action = @action.sub(/_with_.*$/, '')
   @routes = ApiRouteSet.apis.first.api_methods_for_controller_and_action(@controller, @action)
   @route = @routes.first
-  @controller_path = "app/controllers/#{@route.requirements[:controller]}_controller.rb"
-  @controller_path = nil unless File.file?(Rails.root+@controller_path)
+  @controller_path = "app/controllers/#{@route.requirements[:controller]}_controller.rb" if @route.present?
+  @controller_path = nil unless @controller_path && File.file?(Rails.root+@controller_path)
 end

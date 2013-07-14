@@ -63,7 +63,7 @@ class ApiRouteSet
 
   def api_methods_for_controller_and_action(controller, action)
      CanvasRails::Application.routes.routes.select{ |r| r.defaults[:controller] == controller && r.defaults[:action] == action }
-  nd
+  end
 
   def get(path, opts = {})
     route(:get, path, opts)
