@@ -401,7 +401,7 @@ class Account < ActiveRecord::Base
   end
   
   def self.account_lookup_cache_key(id)
-    ['_account_lookup2', id].cache_key
+    ['_account_lookup2', id].try(:cache_key)
   end
   
   def self.invalidate_cache(id)

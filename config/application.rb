@@ -3,7 +3,8 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 if defined?(Bundler)
-  Bundler.require(:default, :assets, Rails.env)
+  Bundler.require(*Rails.groups(:assets => %w(development test redis i18n_tools postgres)))
+  #Bundler.require(:default, :assets, Rails.env)
 end
 
 #if defined?(Bundler)
@@ -24,7 +25,7 @@ module CanvasRails
     config.autoload_paths += [config.root.join('lib').to_s]
     $LOAD_PATH << config.root.to_s
     config.encoding = 'utf-8'
-
+    eval(File.read(File.expand_path("../shared_boot.rb", __FILE__)), binding, "config/shared_boot.rb", 1)
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]

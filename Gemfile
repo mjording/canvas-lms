@@ -83,7 +83,7 @@ gem 'foreigner',      '0.9.2'
 gem 'crocodoc-ruby',  '0.0.1', :require => 'crocodoc'
 gem 'regru-premailer', '1.7.7', :require => 'premailer'
 group :assets do
-  gem 'coffee-rails'
+  gem 'coffee-rails', '~> 3.2.1'
   gem 'sass-rails'
   gem 'compass-rails', '1.0.1'
   gem 'dress_code', '1.0.2'
