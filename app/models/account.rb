@@ -847,7 +847,8 @@ class Account < ActiveRecord::Base
       account = @special_accounts[special_account_type]
       unless account
         special_account_id = @special_account_ids[special_account_type] ||= Setting.get("#{special_account_type}_account_id", nil)
-        account = @special_accounts[special_account_type] = Account.find_cached(special_account_id) if special_account_id
+        #account = @special_accounts[special_account_type] = Account.find_cached(special_account_id) if special_account_id
+        account = @special_accounts[special_account_type] = Account.find(special_account_id) if special_account_id
       end
       # another process (i.e. selenium spec) may have changed the setting
       unless account

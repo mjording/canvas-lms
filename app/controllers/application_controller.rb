@@ -115,7 +115,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     assign_localizer
-    yield if block_given?
+    #yield if block_given?
   ensure
     I18n.localizer = nil
   end

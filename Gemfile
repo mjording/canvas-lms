@@ -137,8 +137,8 @@ group :development do
 end
 
 group :development, :test do
-  #gem 'coffee-script'
-  #gem 'coffee-script-source',  '1.6.2' #pinned so everyone's compiled output matches
+  gem 'coffee-script'
+  gem 'coffee-script-source',  '1.6.3' #pinned so everyone's compiled output matches
   gem 'parallel',     '0.5.16'
 end
 
