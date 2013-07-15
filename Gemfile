@@ -82,8 +82,8 @@ gem 'xml-simple',     '1.0.12', :require => 'xmlsimple'
 gem 'foreigner',      '0.9.2'
 gem 'crocodoc-ruby',  '0.0.1', :require => 'crocodoc'
 gem 'regru-premailer', '1.7.7', :require => 'premailer'
-gem 'sprockets-rails',  :require => 'sprockets/railtie'#, :git => 'git://github.com/rails/sprockets-rails.git', :branch => 'fix-3-0',  :require => 'sprockets/railtie'
 group :assets do
+  gem 'coffee-rails'
   gem 'sass-rails'
   gem 'compass-rails', '1.0.1'
   gem 'dress_code', '1.0.2'
@@ -137,8 +137,8 @@ group :development do
 end
 
 group :development, :test do
-  gem 'coffee-script'
-  gem 'coffee-script-source',  '1.6.2' #pinned so everyone's compiled output matches
+  #gem 'coffee-script'
+  #gem 'coffee-script-source',  '1.6.2' #pinned so everyone's compiled output matches
   gem 'parallel',     '0.5.16'
 end
 

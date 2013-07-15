@@ -2,7 +2,7 @@ require File.expand_path('../application', __FILE__)
 
 
 # Initialize the rails application
-if !!ENV['CANVAS_RAILS3'] || File.exist?(File.expand_path("../../RAILS3", __FILE__))
+if !!ENV['CANVAS_RAILS3'] || File.exist?("#{Rails.root}/RAILS3")
   def environment_configuration(_config)
     CanvasRails::Application.configure do
       yield(config)
