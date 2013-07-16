@@ -1,2 +1,0 @@
-require ['grading_standards']
-

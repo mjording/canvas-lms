@@ -1,1 +1,0 @@
-require ['grade_summary']
