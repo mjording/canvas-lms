@@ -1,3 +1,11 @@
+module Delayed
+  MIN_PRIORITY = 0
+  HIGH_PRIORITY = 0
+  NORMAL_PRIORITY = 10
+  LOW_PRIORITY = 20
+  LOWER_PRIORITY = 50
+  MAX_PRIORITY = 1_000_000
+end
 #config = {
   #:backend => 'active_record',
 #}.merge((Setting.from_config('delayed_jobs') || {}).symbolize_keys)

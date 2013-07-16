@@ -6,33 +6,33 @@ end
 
 require File.expand_path("../config/canvas_rails3", __FILE__)
 
-if CANVAS_RAILS3
-  # 3.0.20 is transitional, we will be on 3.2.x before support is complete
+#if CANVAS_RAILS3
+   #3.0.20 is transitional, we will be on 3.2.x before support is complete
   # that's also why some gems below have to be downgraded, 3.0.20 relies on old versions of some gems
   # just to be clear, Canvas is NOT READY to run under Rails 3 in production
   gem 'rails',        '3.2.1'
   gem 'authlogic', "~> 3.3.0"#,    '3.2.0'
-else
-  gem 'rails',        '2.3.18'
-  gem 'authlogic',    '2.1.3'
-end
+#else
+  #gem 'rails',        '2.3.18'
+  #gem 'authlogic',    '2.1.3'
+#end
 
 gem "aws-sdk",        '1.8.3.1'
 gem 'barby',          '0.5.0'
 gem 'bcrypt-ruby',    '3.0.1'
 gem 'builder',        '3.0.0' #'2.1.2'
-if !CANVAS_RAILS3
-  gem 'canvas_connect', '0.1.0'
-end
+#if !CANVAS_RAILS3
+  #gem 'canvas_connect', '0.1.0'
+#end
 gem 'daemons',        '1.1.0'
 gem 'diff-lcs',       '1.1.3',  :require => 'diff/lcs'
-if !CANVAS_RAILS3
-  gem 'encrypted_cookie_store-instructure', '1.0.4', :require => 'encrypted_cookie_store'
-end
+#if !CANVAS_RAILS3
+  #gem 'encrypted_cookie_store-instructure', '1.0.4', :require => 'encrypted_cookie_store'
+#end
 gem 'erubis', '2.7.0'#,         CANVAS_RAILS3 ? '2.6.6' : '2.7.0'
-if !CANVAS_RAILS3
-  gem 'fake_arel',      '1.0.0'
-end
+#if !CANVAS_RAILS3
+  #gem 'fake_arel',      '1.0.0'
+#end
 gem 'ffi',            '1.1.5'
 gem 'hairtrigger',    '0.2.3'
 #gem 'sass',           '3.2.3'
@@ -46,7 +46,7 @@ gem 'json',           '1.8.0'
 # native xml parsing, diigo
 gem 'libxml-ruby',    '2.6.0',  :require => 'xml/libxml'
 gem 'macaddr',        '1.0.0'  # macaddr 1.2.0 tries to require 'systemu' which isn't a dependency
-gem 'mail', CANVAS_RAILS3 ? '2.4.0' : '2.5.3' #'2.2.19' : '2.5.3'
+gem 'mail', '2.4.0' #  ? : '2.5.3' #'2.2.19' : '2.5.3'
 # using this forked gem until https://github.com/37signals/marginalia/pull/15 is in the source gem
 gem 'marginalia',  :git => 'git://github.com/airbnb/marginalia.git', ref: 'nosqllitecrash'
 gem 'mime-types',     '1.17.2',   :require => 'mime/types'
@@ -58,7 +58,7 @@ gem 'netaddr',        '1.5.0'
 gem 'nokogiri',       '1.5.6'
 # oauth gem, with rails3 fixes rolled in
 gem 'oauth-instructure', '0.4.9', :require => 'oauth'
-gem 'rack',           CANVAS_RAILS3 ? '1.4.0' : '1.1.3' #'1.2.5' : '1.1.3'
+gem 'rack',      '1.4.0'#     CANVAS_RAILS3 ? '1.4.0' : '1.1.3' #'1.2.5' : '1.1.3'
 #gem 'rake'#,           '10.0.4'
 gem 'rdoc',           '3.12'
 gem 'ratom-instructure', '0.6.9', :require => "atom" # custom gem until necessary changes are merged into mainstream
@@ -82,10 +82,11 @@ gem 'xml-simple',     '1.0.12', :require => 'xmlsimple'
 gem 'foreigner',      '0.9.2'
 gem 'crocodoc-ruby',  '0.0.1', :require => 'crocodoc'
 gem 'regru-premailer', '1.7.7', :require => 'premailer'
+gem 'delayed_job_active_record'
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'sass-rails'
-  gem 'compass-rails', '1.0.1'
+  #gem 'compass-rails', '1.0.1'
   gem 'dress_code', '1.0.2'
 end
 
@@ -108,12 +109,12 @@ group :test do
   gem 'mocha',        :git => 'git://github.com/ccutrer/mocha.git', :require => false
   gem 'parallelized_specs', '0.4.59'
   gem 'thin', '1.5.1'
-  if CANVAS_RAILS3
+  #if CANVAS_RAILS3
     gem 'rspec-rails',  '2.13.0'
-  else
-    gem 'rspec',        '1.3.2'
-    gem 'rspec-rails',  '1.3.4'
-  end
+  #else
+    #gem 'rspec',        '1.3.2'
+    #gem 'rspec-rails',  '1.3.4'
+  #end
   gem 'selenium-webdriver', '2.31.0'
   gem 'webrat',       '0.7.3'
   gem 'yard',         '0.8.0'

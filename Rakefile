@@ -1,15 +1,15 @@
 # Add your own tasks in files placed in lib/tasks ending in .rake,
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-require File.expand_path("../config/canvas_rails3", __FILE__)
+#require File.expand_path("../config/canvas_rails3", __FILE__)
 
-if CANVAS_RAILS3
+#if CANVAS_RAILS3
   require File.expand_path('../config/application', __FILE__)
 
   CanvasRails::Application.load_tasks
-else
-  require File.expand_path('../config/boot', __FILE__)
-  require 'tasks/rails'
-  begin; require 'parallelized_specs/tasks'; rescue LoadError; end
-end
+#else
+  #require File.expand_path('../config/boot', __FILE__)
+  #require 'tasks/rails'
+  #begin; require 'parallelized_specs/tasks'; rescue LoadError; end
+#end
 

@@ -3,9 +3,7 @@
 # removes the individually selected items if the all_item option is chosen for it
 # see the test for a simple example
 define ->
-  # matches copy[folders][I_00001_R] and puts "folder" in first capture and the id in second
   reAssetId = /copy\[([^\]]*)\]\[([^\]]*)\]/
-  # matches copy[all_folders] and puts "folder" in the capture
   reAllSelection = /copy\[all_([^\]]*)\]/
 
   processMigrationItemSelections = (data) ->

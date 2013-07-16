@@ -39,7 +39,7 @@ namespace :js do
   end
 
   def coffee_destination(dir_or_file)
-    dir_or_file.sub('app/assets/javascripts', 'public/javascripts/compiled').
+    dir_or_file.sub('app/coffeescripts', 'public/javascripts/compiled').
                 sub('spec/coffeescripts', 'spec/javascripts').
                 sub(%r{/javascripts/compiled/plugins/([^/]+)(/|$)}, '/plugins/\\1/javascripts/compiled\\2')
   end
@@ -95,10 +95,10 @@ namespace :js do
 
         if Canvas::CoffeeScript.coffee_script_binary_is_available?
           puts "--> Compiling CoffeeScript with 'coffee' binary"
-          dirs = Dir[Rails.root+'{app,spec}/assets/javascript/**/*.coffee'].
+          dirs = Dir[Rails.root+'{app,spec}/coffeescripts/{,plugins/*/}**/*.coffee'].
               map { |f| File.dirname(f) }.uniq
-          dirs.each do |dir|
           #Parallel.each(dirs, :in_threads => Parallel.processor_count) do |dir|
+          dirs.each do |dir|
             destination = coffee_destination(dir)
             FileUtils.mkdir_p(destination)
             system("coffee -m -c -o #{destination} #{dir}/*.coffee")
@@ -106,10 +106,12 @@ namespace :js do
           end
         else
           puts "--> Compiling CoffeeScript with coffee-script gem"
-          files = Dir[Rails.root+'{app,spec}/assets/javascripts/**/*.coffee']
-          files.each do |file|
+          files = Dir[Rails.root+'{app,spec}/coffeescripts/{,plugins/*/}**/*.coffee']
             #Parallel.each(files, :in_threads => Parallel.processor_count) do |file|
+          files.each do |file|
+            p " --> Compiling #{file}"
             compile_coffeescript file
+            puts " y! "
           end
         end
       end
