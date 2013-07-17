@@ -856,11 +856,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  if Rails.version < "3.0"
-    rescue_responses['AuthenticationMethods::AccessTokenError'] = 401
-  else
-    ActionDispatch::ShowExceptions.rescue_responses['AuthenticationMethods::AccessTokenError'] = 401
-  end
+  rescue_from(AuthenticationMethods::AccessTokenError) {
+    render :text => e.to_s, :status => 401
+  }
+  #if Rails.version < "3.0"
+    #rescue_responses['AuthenticationMethods::AccessTokenError'] = 401
+  #else
+    #ActionDispatch::ShowExceptions.rescue_responses['AuthenticationMethods::AccessTokenError'] = 401
+  #end
 
   def rescue_action_in_api(exception, error_report)
     status_code = response_code_for_rescue(exception) || 500
