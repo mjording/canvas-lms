@@ -97,18 +97,21 @@ namespace :js do
           puts "--> Compiling CoffeeScript with 'coffee' binary"
           dirs = Dir[Rails.root+'{app,spec}/coffeescripts/{,plugins/*/}**/*.coffee'].
               map { |f| File.dirname(f) }.uniq
-          #Parallel.each(dirs, :in_threads => Parallel.processor_count) do |dir|
-          dirs.each do |dir|
+          Parallel.each(dirs, :in_threads => Parallel.processor_count) do |dir|
+          #dirs.each do |dir|
             destination = coffee_destination(dir)
             FileUtils.mkdir_p(destination)
-            system("coffee -m -c -o #{destination} #{dir}/*.coffee")
-            raise "Unable to compile coffeescripts in #{dir}" if $?.exitstatus != 0
+            begin 
+              system("coffee -m -c -o #{destination} #{dir}/*.coffee")
+            rescue 
+              puts "Unable to compile coffeescripts in #{dir}" 
+            end
           end
         else
           puts "--> Compiling CoffeeScript with coffee-script gem"
           files = Dir[Rails.root+'{app,spec}/coffeescripts/{,plugins/*/}**/*.coffee']
-            #Parallel.each(files, :in_threads => Parallel.processor_count) do |file|
-          files.each do |file|
+          Parallel.each(files, :in_threads => Parallel.processor_count) do |file|
+          #files.each do |file|
             p " --> Compiling #{file}"
             compile_coffeescript file
             puts " y! "
